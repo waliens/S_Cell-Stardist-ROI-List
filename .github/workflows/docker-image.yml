@@ -27,4 +27,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/s_celldetect_stardist_he_roi:${{ github.ref_name }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/s_cell_stardist:${{ github.ref_name }}
