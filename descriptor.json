@@ -1,7 +1,7 @@
 {
-    "name": "CellDetect_Stardist_HE_ROI",
+    "name": "Cell_Stardist",
     "container-image": {
-        "image": "cytomineuliege/s_celldetect_stardist_he_roi",
+        "image": "bathienle/s_cell_stardist",
         "type": "singularity"
     },
     "schema-version": "cytomine-0.1",
