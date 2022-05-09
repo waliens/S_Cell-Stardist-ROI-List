@@ -37,6 +37,12 @@ from cytomine.models import (
     Annotation, AnnotationCollection, ImageInstanceCollection, Job
 )
 
+# Launch GPU if enabled
+import tensorflow as tf
+physical_devices = tf.config.list_physical_devices('GPU')
+if physical_devices:
+    tf.config.experimental.set_memory_growth(physical_devices[0], True)
+
 __author__ = "Maree Raphael <raphael.maree@uliege.be>"
 
 
@@ -50,7 +56,7 @@ def main(argv):
         np.random.seed(17)
 
         # use local model file in ~/models/2D_versatile_HE/
-        model = StarDist2D(None, name='2D_versatile_HE', basedir='/models/')
+        model = StarDist2D(None, name='2D_versatile_HE', basedir='models/')
 
         # Select images to process
         images = ImageInstanceCollection().fetch_with_filter(
