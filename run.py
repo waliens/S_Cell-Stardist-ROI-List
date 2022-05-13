@@ -48,7 +48,8 @@ __author__ = "Maree Raphael <raphael.maree@uliege.be>"
 
 
 def main(argv):
-    os.system('ls  /usr/lib/x86_64-linux-gnu/libcuda.so.1');
+    os.system('ls  /usr/lib/x86_64-linux-gnu/libcuda.so.1')
+    os.system('nvidia-smi')
 
     with CytomineJob.from_cli(argv) as conn:
         conn.job.update(status=Job.RUNNING, progress=0, statusComment="Initialization...")
