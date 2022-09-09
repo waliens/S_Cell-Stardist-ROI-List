@@ -1,39 +1,39 @@
 {
-    "name": "Cell_Stardist",
+    "name": "ThyroidFNAB-Cell-Stardist",
     "container-image": {
-        "image": "bathienle/s_cell_stardist",
+        "image": "rmormont/thyroidfnab-cell-stardist",
         "type": "singularity"
     },
     "schema-version": "cytomine-0.1",
-    "description": "Cell (nuclei) detection using StarDist with versatile H&E pre-trained model",
-    "command-line": "python run.py CYTOMINE_HOST CYTOMINE_PUBLIC_KEY CYTOMINE_PRIVATE_KEY CYTOMINE_ID_PROJECT CYTOMINE_ID_SOFTWARE CYTOMINE_ID_IMAGES CYTOMINE_ID_ROI_TERM CYTOMINE_ID_CELL_TERM STARDIST_PROB_T STARDIST_NMS_T STARDIST_NORM_PERC_LOW STARDIST_NORM_PERC_HIGH",
+    "description": "Cell (nuclei) detection using StarDist with versatile H&E pre-trained model for ThyroidFNAB",
+    "command-line": "python run.py CYTOMINE_HOST CYTOMINE_PUBLIC_KEY CYTOMINE_PRIVATE_KEY CYTOMINE_ID_PROJECT CYTOMINE_ID_SOFTWARE CYTOMINE_ID_SEGMENT_JOB CYTOMINE_ID_CELL_TERM STARDIST_PROB_T STARDIST_NMS_T STARDIST_NORM_PERC_LOW STARDIST_NORM_PERC_HIGH",
     "inputs": [
-        {
-        	"id": "cytomine_host",
-      		"value-key": "@ID",
-      		"command-line-flag": "--@id",
-      		"name": "Cytomine host",
-      		"set-by-server": true,
-      		"optional": false,
-      		"type": "String"
+			{
+				"id": "cytomine_host",
+				"value-key": "@ID",
+				"command-line-flag": "--@id",
+				"name": "Cytomine host",
+				"set-by-server": true,
+				"optional": false,
+				"type": "String"
     	},
-        {
-			"id": "cytomine_public_key",
-			"value-key": "@ID",
-			"command-line-flag": "--@id",
-			"name": "Cytomine public key",
-			"set-by-server": true,
-			"optional": false,
-			"type": "String"
+			{
+				"id": "cytomine_public_key",
+				"value-key": "@ID",
+				"command-line-flag": "--@id",
+				"name": "Cytomine public key",
+				"set-by-server": true,
+				"optional": false,
+				"type": "String"
     	},
     	{
     		"id": "cytomine_private_key",
-			"value-key": "@ID",
-			"command-line-flag": "--@id",
-			"name": "Cytomine private key",
-			"set-by-server": true,
-			"optional": false,
-			"type": "String"
+				"value-key": "@ID",
+				"command-line-flag": "--@id",
+				"name": "Cytomine private key",
+				"set-by-server": true,
+				"optional": false,
+				"type": "String"
     	},
 		{
 			"id": "cytomine_id_project",
@@ -53,34 +53,19 @@
 			"optional": false,
 			"type": "Number"
 		},
-	{
-	    "id": "cytomine_id_images",
+	{	
+	    "id": "cytomine_id_segment_job",
 	    "value-key": "@ID",
 	    "command-line-flag": "--@id",
-	    "name": "Cytomine Image IDs",
-	    "description": "Images on which to detect objects",
-	    "set-by-server": false,
-	    "optional": false,
-	    "type": "ListDomain",
-	        "uri": "/api/project/$currentProject$/imageinstance.json",
-	        "uri-print-attribute": "instanceFilename",
-	        "uri-sort-attribute": "instanceFilename"
-	},
-
-	{
-	    "id": "cytomine_id_roi_term",
-	    "value-key": "@ID",
-	    "command-line-flag": "--@id",
-	    "name": "Cytomine ROI term ID",
-	    "description": "Ontology term ID for ROI(s) where to detect cells",
+	    "name": "Cytomine Job ID",
+	    "description": "Job that generated a segmentation mask in a ROI or image",
 	    "set-by-server": false,
 	    "optional": false,
 	    "type": "Domain",
-	    "uri": "/api/ontology/$currentOntology$/term.json",
-	    "uri-print-attribute": "name",
-	    "uri-sort-attribute": "name"
+      "uri": "/api/job.json?project=$currentProject$",
+      "uri-sort-attribute": "softwareName",
+      "uri-print-attribute": "softwareName"
 	},
-
 	{
 	    "id": "cytomine_id_cell_term",
 	    "value-key": "@ID",
